@@ -4,13 +4,17 @@ import com.stringboottutorial.apidemo.stringboot.demo.models.Product;
 import com.stringboottutorial.apidemo.stringboot.demo.models.ResponseObject;
 import com.stringboottutorial.apidemo.stringboot.demo.repositories.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.test.web.reactive.server.FluxExchangeResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
 
+@SpringBootApplication
 @RestController
 @RequestMapping(path = "/api/v1/Products")
 public class ProductController {
@@ -20,13 +24,14 @@ public class ProductController {
     private ProductRepository repository;
     //khi su dung Autowired thi repository se duoc tao ra ngay khi app chay - chi tao 1 lan
 
-    @GetMapping("")
+
+    @GetMapping("phones")
     // this request is http://localhost:8080/api/v1/Products
     List<Product> getAllProducts(){
-//       return List.of(
-//               new Product(1L,"Iphone 5",12,802.500,""),
-//        new Product(2L,"Ipad 1",23,954.670,"")
-//       );
+////       return List.of(
+////               new Product(1L,"Iphone 5",12,802.500,""),
+////        new Product(2L,"Ipad 1",23,954.670,"")
+////       );
         return repository.findAll();//where is data?
     }
     //You must save this to database, Now we have H2 DB - In-memory Database
